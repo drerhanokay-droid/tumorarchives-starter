@@ -1,0 +1,125 @@
+export type TumorBehavior = 'benign' | 'intermediate' | 'malignant' | 'metastatic' | 'unknown';
+export type TumorOrigin = 'bone' | 'soft_tissue' | 'metastatic' | 'other';
+export type ImageType = 'xray' | 'mri' | 'ct' | 'clinical' | 'pathology' | 'pet' | 'usg' | 'other';
+export type ImageSourceType = 'camera' | 'gallery' | 'document_import' | 'other';
+
+export type Patient = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  age?: number | null;
+  dateOfBirth?: string | null;
+  gender?: string | null;
+  phone?: string | null;
+  nationalIdMasked?: string | null;
+  protocolNo?: string | null;
+  hospitalName?: string | null;
+  referringClinic?: string | null;
+
+  diagnosisDate?: string | null;
+  biopsyDate?: string | null;
+  pathologyReportNo?: string | null;
+  tumorOrigin?: TumorOrigin | null;
+  tumorBehavior?: TumorBehavior | null;
+  tumorType?: string | null;
+  tumorSubtype?: string | null;
+  tumorLocation?: string | null;
+  boneSegment?: string | null;
+  tumorSide?: string | null;
+  compartmentStatus?: string | null;
+  ennekingStage?: string | null;
+  ajccT?: string | null;
+  ajccN?: string | null;
+  ajccM?: string | null;
+  histologicGrade?: string | null;
+  tumorSizeCm?: number | null;
+  metastaticAtDiagnosis?: string | null;
+  skipMetastasis?: string | null;
+  pathologicalFracture?: string | null;
+
+  biopsyType?: string | null;
+  surgeryDate?: string | null;
+  surgeryType?: string | null;
+  surgeryIntent?: string | null;
+  reconstruction?: string | null;
+  implantType?: string | null;
+  neoadjuvantChemo?: string | null;
+  adjuvantChemo?: string | null;
+  chemoProtocol?: string | null;
+  radiotherapy?: string | null;
+  radiotherapyDoseGy?: number | null;
+  surgicalMargin?: string | null;
+  necrosisRatePct?: number | null;
+
+  localRecurrence?: string | null;
+  localRecurrenceDate?: string | null;
+  metastasis?: string | null;
+  metastasisDate?: string | null;
+  currentStatus?: string | null;
+  deathDate?: string | null;
+  lastContactDate?: string | null;
+  notes?: string | null;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type PatientImage = {
+  id: string;
+  patientId: string;
+  fileUri: string;
+  thumbnailUri?: string | null;
+  label?: string | null;
+  imageType?: ImageType;
+  modality?: string | null;
+  bodyPart?: string | null;
+  bodySide?: string | null;
+  sourceType?: ImageSourceType | null;
+  capturedAt?: string | null;
+  mimeType?: string | null;
+  fileSizeBytes?: number | null;
+  width?: number | null;
+  height?: number | null;
+  checksum?: string | null;
+  notes?: string | null;
+  createdAt: number;
+};
+
+export type ScoreRecord = {
+  id: string;
+  patientId: string;
+  scoringSystem: string;
+  totalScore: number;
+  interpretation?: string | null;
+  answersJson: string;
+  createdAt: number;
+};
+
+export type FollowUp = {
+  id: string;
+  patientId: string;
+  visitDate: number;
+  visitType?: string | null;
+  postoperativeMonth?: number | null;
+  complaint?: string | null;
+  findings?: string | null;
+  painVas?: number | null;
+  ecog?: number | null;
+  karnofsky?: number | null;
+  mstsScore?: number | null;
+  localRecurrenceStatus?: string | null;
+  metastasisStatus?: string | null;
+  lungMetastasisStatus?: string | null;
+  woundStatus?: string | null;
+  implantStatus?: string | null;
+  unionStatus?: string | null;
+  weightBearingStatus?: string | null;
+  romSummary?: string | null;
+  imagingSummary?: string | null;
+  pathologySummary?: string | null;
+  complicationsJson?: string | null;
+  treatmentSinceLastVisit?: string | null;
+  plan?: string | null;
+  nextVisitDate?: number | null;
+  createdAt: number;
+  updatedAt: number;
+};

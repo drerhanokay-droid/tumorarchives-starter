@@ -1,0 +1,64 @@
+import { ExpoConfig, ConfigContext } from 'expo/config';
+
+export default ({ config }: ConfigContext): ExpoConfig => ({
+  ...config,
+  name: 'TumorArchives',
+  slug: 'tumorarchives',
+  scheme: 'tumorarchives',
+  version: '0.1.0',
+  orientation: 'portrait',
+  userInterfaceStyle: 'dark',
+  ios: {
+    supportsTablet: true,
+    bundleIdentifier: 'com.example.tumorarchives',
+    infoPlist: {
+      NSCameraUsageDescription: 'Klinik görüntü çekmek için kameraya erişim gerekir.',
+      NSPhotoLibraryUsageDescription: 'Klinik görüntü seçmek için fotoğraf arşivine erişim gerekir.',
+      NSFaceIDUsageDescription: 'Uygulama kilidini açmak için Face ID kullanılır.'
+    }
+  },
+  android: {
+    package: 'com.example.tumorarchives',
+    permissions: ['CAMERA', 'READ_MEDIA_IMAGES']
+  },
+  plugins: [
+    'expo-router',
+    [
+      'expo-sqlite',
+      {
+        useSQLCipher: true
+      }
+    ],
+    [
+      'expo-secure-store',
+      {
+        configureAndroidBackup: true,
+        faceIDPermission: 'Allow $(PRODUCT_NAME) to use Face ID to unlock your medical archive.'
+      }
+    ],
+    [
+      'expo-local-authentication',
+      {
+        faceIDPermission: 'Allow $(PRODUCT_NAME) to use Face ID to unlock your medical archive.'
+      }
+    ],
+    [
+      'expo-image-picker',
+      {
+        photosPermission: 'Klinik görüntü seçmek için fotoğraflarınıza erişim gerekir.',
+        cameraPermission: 'Klinik görüntü çekmek için kameraya erişim gerekir.',
+        microphonePermission: false
+      }
+    ],
+    [
+      'expo-file-system',
+      {
+        supportsOpeningDocumentsInPlace: true,
+        enableFileSharing: true
+      }
+    ]
+  ],
+  experiments: {
+    typedRoutes: true
+  }
+});
