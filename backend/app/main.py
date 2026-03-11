@@ -1,5 +1,6 @@
 from datetime import datetime, timezone
 from fastapi import Depends, FastAPI, HTTPException, status
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from sqlalchemy import select
 from sqlalchemy.orm import Session
@@ -9,6 +10,13 @@ from .schemas import DeviceRegisterRequest, LicenseResponse, LoginRequest, Regis
 from .security import create_access_token, decode_token, hash_password, verify_password
 
 app = FastAPI(title='TumorArchives License Server')
+app.add_middleware(
+    CORSMiddleware,
+    allow_origin_regex=r'https?://(localhost|127\.0\.0\.1)(:\d+)?',
+    allow_credentials=True,
+    allow_methods=['*'],
+    allow_headers=['*'],
+)
 security = HTTPBearer(auto_error=True)
 
 Base.metadata.create_all(bind=engine)

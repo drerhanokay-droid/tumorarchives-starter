@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://127.0.0.1:8000";
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://127.0.0.1:8000';
 
 export type LoginResponse = {
   access_token: string;
@@ -7,14 +7,14 @@ export type LoginResponse = {
 
 export async function login(email: string, password: string): Promise<LoginResponse> {
   const res = await fetch(`${API_BASE_URL}/auth/login`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password }),
   });
 
   if (!res.ok) {
     const text = await res.text();
-    throw new Error(text || "Login failed");
+    throw new Error(text || 'Login failed');
   }
 
   return res.json();
@@ -23,12 +23,12 @@ export async function login(email: string, password: string): Promise<LoginRespo
 export async function checkLicense(token: string) {
   const res = await fetch(`${API_BASE_URL}/license/check`, {
     headers: { Authorization: `Bearer ${token}` },
-    cache: "no-store",
+    cache: 'no-store',
   });
 
   if (!res.ok) {
     const text = await res.text();
-    throw new Error(text || "License check failed");
+    throw new Error(text || 'License check failed');
   }
 
   return res.json();
