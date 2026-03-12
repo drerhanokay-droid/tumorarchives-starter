@@ -1253,3 +1253,47 @@ p {
     grid-column: auto;
   }
 }
+
+.mockup-step-link,
+.mockup-tile-link {
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.mockup-step-link:hover,
+.mockup-tile-link:hover {
+  transform: translateY(-2px);
+  border-color: rgba(61,160,255,0.28);
+}
+
+.upload-dropzone {
+  display: grid;
+  gap: 10px;
+  padding: 22px;
+  border-radius: 22px;
+  border: 1px dashed rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.03);
+  cursor: pointer;
+}
+
+.upload-dropzone input {
+  display: none;
+}
+
+.selected-file-list {
+  display: grid;
+  gap: 10px;
+}
+
+.selected-file-item {
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.selected-file-item span {
+  color: var(--muted);
+}

@@ -84,16 +84,16 @@ const quickStats = [
 ];
 
 const mockupSteps = [
-  { label: 'Patient intake', value: 'Staging + pathology + treatment fields' },
-  { label: 'Radiology stack', value: 'MRI, BT, radyografi, DICOM seri gruplari' },
-  { label: 'Outcome loop', value: 'NED / AWD / DOD + timeline + control dates' },
+  { label: 'Patient intake', value: 'Staging + pathology + treatment fields', href: '/workspace/intake' },
+  { label: 'Radiology stack', value: 'MRI, BT, radyografi, DICOM seri gruplari', href: '/workspace/radiology' },
+  { label: 'Outcome loop', value: 'NED / AWD / DOD + timeline + control dates', href: '/workspace/follow-up' },
 ];
 
 const mockupTiles = [
-  { title: 'Lisans durumu', value: 'Trial -> Academic', tone: 'blue' },
-  { title: 'Aktif cihazlar', value: '2 / 3', tone: 'teal' },
-  { title: 'Follow-up engine', value: 'Timeline live', tone: 'amber' },
-  { title: 'Export', value: 'Excel / CSV / JSON', tone: 'rose' },
+  { title: 'Lisans durumu', value: 'Trial -> Academic', tone: 'blue', href: '/panel/license' },
+  { title: 'Aktif cihazlar', value: '2 / 3', tone: 'teal', href: '/panel/devices' },
+  { title: 'Follow-up engine', value: 'Timeline live', tone: 'amber', href: '/workspace/follow-up' },
+  { title: 'Export', value: 'Excel / CSV / JSON', tone: 'rose', href: '/workspace/export' },
 ];
 
 export default async function Home() {
@@ -165,18 +165,18 @@ export default async function Home() {
             </div>
             <div className="mockup-caption-grid">
               {mockupSteps.map((step) => (
-                <article key={step.label} className="mockup-step">
+                <Link key={step.label} href={step.href} className="mockup-step mockup-step-link">
                   <strong>{step.label}</strong>
                   <span>{step.value}</span>
-                </article>
+                </Link>
               ))}
             </div>
             <div className="mockup-grid">
               {mockupTiles.map((tile) => (
-                <article key={tile.title} className={`mockup-tile mockup-${tile.tone}`}>
+                <Link key={tile.title} href={tile.href} className={`mockup-tile mockup-${tile.tone} mockup-tile-link`}>
                   <span>{tile.title}</span>
                   <strong>{tile.value}</strong>
-                </article>
+                </Link>
               ))}
             </div>
           </div>
