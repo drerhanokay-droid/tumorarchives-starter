@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlalchemy import Boolean, DateTime, ForeignKey, Integer, String
+from sqlalchemy import Boolean, DateTime, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from .db import Base
 
@@ -42,3 +42,17 @@ class Device(Base):
     last_seen_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
     license: Mapped['License'] = relationship(back_populates='devices')
+
+
+class ContactRequest(Base):
+    __tablename__ = 'contact_requests'
+
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    full_name: Mapped[str] = mapped_column(String(255))
+    email: Mapped[str] = mapped_column(String(255), index=True)
+    specialty: Mapped[str | None] = mapped_column(String(120), nullable=True)
+    usage_type: Mapped[str] = mapped_column(String(50))
+    device_count: Mapped[str | None] = mapped_column(String(50), nullable=True)
+    orcid_status: Mapped[str | None] = mapped_column(String(50), nullable=True)
+    message: Mapped[str | None] = mapped_column(Text, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
