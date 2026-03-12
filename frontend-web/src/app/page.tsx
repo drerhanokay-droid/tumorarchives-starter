@@ -3,43 +3,43 @@ import Link from 'next/link';
 import { getHealth } from '@/lib/api';
 
 const categories = [
-  'Hasta Kaydi',
-  'Radyoloji',
-  'Follow-up',
-  'Skorlar',
-  'Export',
-  'Lisans',
+  { label: 'Hasta Kaydi', href: '/workspace/intake' },
+  { label: 'Radyoloji', href: '/workspace/radiology' },
+  { label: 'Follow-up', href: '/workspace/follow-up' },
+  { label: 'Skorlar', href: '/workspace/scores' },
+  { label: 'Export', href: '/workspace/export' },
+  { label: 'Lisans', href: '/panel/license' },
 ];
 
 const modules = [
   {
     title: 'Hasta Kaydi Workspace',
     description: 'Demografi, staging, patoloji ve tedavi alanlarini tek veri modeli icinde tutar.',
-    action: { href: '/register', label: 'Kayit Akisini Incele' },
+    action: { href: '/workspace/intake', label: 'Kayit Akisini Incele' },
     meta: 'Clinical core',
   },
   {
     title: 'Radyoloji Domain Arsivi',
     description: 'Preop ve postop MRI, BT, radyografi ve takip serilerini hasta bazli yonetir.',
-    action: { href: '/contact', label: 'Demo Talebi Gonder' },
+    action: { href: '/workspace/radiology', label: 'Goruntu Alanini Ac' },
     meta: 'Imaging',
   },
   {
     title: 'Follow-up Timeline',
     description: 'NED, AWD, DOD, tedavi plani ve kontrol onerilerini zaman cizgisi uzerinde gosterir.',
-    action: { href: '/login', label: 'Paneli Ac' },
+    action: { href: '/workspace/follow-up', label: 'Timeline Alanini Ac' },
     meta: 'Outcome tracking',
   },
   {
     title: 'Skor ve Siniflama Kutuphanesi',
     description: '31 skor ve 378 siniflama sistemiyle standardize klinik kayit olusturur.',
-    action: { href: '/releases', label: 'Kapsami Gor' },
+    action: { href: '/workspace/scores', label: 'Kutuphane Alanini Ac' },
     meta: 'Decision support',
   },
   {
     title: 'Anonim Export Engine',
     description: 'Excel, CSV ve JSON ciktilarinda kisisel alanlari otomatik anonimlestirir.',
-    action: { href: '/contact', label: 'Arastirma Kullanimini Sor' },
+    action: { href: '/workspace/export', label: 'Export Alanini Ac' },
     meta: 'Research',
   },
   {
@@ -142,7 +142,7 @@ export default async function Home() {
           </div>
           <div className="category-strip">
             {categories.map((category) => (
-              <span key={category}>{category}</span>
+              <Link key={category.label} href={category.href} className="category-pill">{category.label}</Link>
             ))}
           </div>
         </div>
@@ -208,14 +208,12 @@ export default async function Home() {
         </div>
         <div className="module-grid">
           {modules.map((module) => (
-            <article key={module.title} className="module-card">
+            <Link key={module.title} href={module.action.href} className="module-card module-card-link">
               <span className="module-meta">{module.meta}</span>
               <h3>{module.title}</h3>
               <p>{module.description}</p>
-              <Link href={module.action.href} className="module-link">
-                {module.action.label}
-              </Link>
-            </article>
+              <span className="module-link">{module.action.label}</span>
+            </Link>
           ))}
         </div>
       </section>

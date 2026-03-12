@@ -211,7 +211,7 @@ p {
   margin-top: 28px;
 }
 
-.category-strip span,
+.category-strip .category-pill,
 .module-card,
 .aside-panel,
 .stat-tile-platform,
@@ -224,12 +224,7 @@ p {
   box-shadow: var(--shadow);
 }
 
-.category-strip span {
-  padding: 12px 14px;
-  border-radius: 999px;
-  font-size: 0.9rem;
-  color: var(--muted);
-}
+.category-strip .category-pill {}
 
 .hero-aside {
   display: grid;
@@ -1296,4 +1291,22 @@ p {
 
 .selected-file-item span {
   color: var(--muted);
+}
+
+.module-card-link {
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.module-card-link:hover {
+  transform: translateY(-2px);
+  border-color: rgba(61,160,255,0.28);
+  background: rgba(255,255,255,0.05);
+}
+
+.category-strip .category-pill:hover,
+.category-strip .category-pill:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(61, 160, 255, 0.28);
+  background: rgba(255, 255, 255, 0.06);
+  outline: none;
 }
