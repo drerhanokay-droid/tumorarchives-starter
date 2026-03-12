@@ -97,7 +97,17 @@ const mockupTiles = [
 ];
 
 export default async function Home() {
-  const health = await getHealth();
+  let health: { status: string; service?: string; note?: string };
+
+  try {
+    health = await getHealth();
+  } catch {
+    health = {
+      status: 'degraded',
+      service: 'tumorarchives-license',
+      note: 'Backend health verisi gecici olarak alinamadi. Landing fallback modunda render edildi.',
+    };
+  }
 
   return (
     <main className="platform-home">
