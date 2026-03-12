@@ -10,3 +10,5 @@ dist/
 build/
 coverage/
 README.md.save
+
+backend/*.db
